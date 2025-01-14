@@ -19,7 +19,7 @@ public class PredictionController {
 
     @PostMapping("/predict")
     public ResponseEntity<PredictionResponse> predict(@RequestBody PredictionRequest predictionRequest) {
-        String apiUrl = "http://localhost:8000/predict";
+        String apiUrl = "http://localhost:8000/predict"; // your flasK endpoint
 
         // Préparer la requête HTTP
         HttpEntity<PredictionRequest> requestEntity = new HttpEntity<>(predictionRequest);
