@@ -19,22 +19,26 @@ public class PredictionController {
 
     @PostMapping("/predict")
     public ResponseEntity<PredictionResponse> predict(@RequestBody PredictionRequest predictionRequest) {
-        String apiUrl = "http://localhost:8000/predict"; // your flasK endpoint
-
-        // Préparer la requête HTTP
+        String apiUrl = "http://localhost:8000/predict/";
         HttpEntity<PredictionRequest> requestEntity = new HttpEntity<>(predictionRequest);
 
-        // Faire l'appel API
-        ResponseEntity<PredictionResponse> apiResponse = restTemplate.exchange(
-                apiUrl,
-                HttpMethod.POST,
-                requestEntity,
-                PredictionResponse.class
-        );
+        try {
+            ResponseEntity<PredictionResponse> apiResponse = restTemplate.exchange(
+                    apiUrl,
+                    HttpMethod.POST,
+                    requestEntity,
+                    PredictionResponse.class
+            );
 
-        // Retourner la réponse
-        return ResponseEntity.ok(apiResponse.getBody());
+            System.out.println("Request sent: " + predictionRequest);
+            System.out.println("Response received: " + apiResponse.getBody());
+            return ResponseEntity.ok(apiResponse.getBody());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(null);
+        }
     }
+
 
     @GetMapping("/test")
     public String test() {
