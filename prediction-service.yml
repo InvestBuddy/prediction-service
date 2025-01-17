@@ -21,7 +21,7 @@ spec:
             - name: SPRING_APPLICATION_NAME
               value: "prediction-service"
             - name: SERVER_PORT
-              value: "8083"
+              value: "8085"
               
             - name: eureka.client.serviceUrl.defaultZone
               value: "http://discovery-server:8761/eureka"
