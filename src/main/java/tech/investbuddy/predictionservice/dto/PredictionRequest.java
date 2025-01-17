@@ -2,6 +2,7 @@ package tech.investbuddy.predictionservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 public class PredictionRequest {
     @JsonProperty("Gender")
@@ -21,7 +23,7 @@ public class PredictionRequest {
     private int age;
 
     @JsonProperty("Income")
-    private int income;
+    private double income;
     @JsonProperty("Risk_Tolerance")
     private String riskTolerance;
 
@@ -38,7 +40,7 @@ public class PredictionRequest {
     private String investmentFrequency;
 
     @JsonProperty("PreferredDomain")
-    private List<PreferredDomains> preferredDomain;
+    private List<String> preferredDomain;
 
     public enum PreferredDomains {
         actions,
