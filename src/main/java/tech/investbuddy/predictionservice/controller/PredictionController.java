@@ -19,7 +19,7 @@ public class PredictionController {
 
     @PostMapping("/predict")
     public ResponseEntity<PredictionResponse> predict(@RequestBody PredictionRequest predictionRequest) {
-        String apiUrl = "http://localhost:8000/predict/";
+        String apiUrl = "http://flask-service:8000/predict";
         HttpEntity<PredictionRequest> requestEntity = new HttpEntity<>(predictionRequest);
 
         try {
