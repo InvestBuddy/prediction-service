@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prediction-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prediction-service
+  template:
+    metadata:
+      labels:
+        app: prediction-service
+    spec:
+      containers:
+        - name: prediction-service
+          image: abakhar217/prediction-service:prediction-service-<BUILD_NUMBER>
+          ports:
+            - containerPort: 8085
+          env:
+            - name: eureka.client.serviceUrl.defaultZone
+              value: "http://discovery-server:8761/eureka"
+            - name: eureka.client.registerWithEureka
+              value: "true"
+            - name:  eureka.client.fetchRegistry   # Enable registry fetching
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prediction-service
+spec:
+  selector:
+    app: prediction-service
+  ports:
+    - protocol: TCP
+      port: 8085
+      targetPort: 8085
+  type: ClusterIP
