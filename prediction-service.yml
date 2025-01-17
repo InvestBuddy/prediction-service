@@ -18,6 +18,11 @@ spec:
           ports:
             - containerPort: 8085
           env:
+            - name: SPRING_APPLICATION_NAME
+              value: "prediction-service"
+            - name: SERVER_PORT
+              value: "8083"
+              
             - name: eureka.client.serviceUrl.defaultZone
               value: "http://discovery-server:8761/eureka"
             - name: eureka.client.registerWithEureka
